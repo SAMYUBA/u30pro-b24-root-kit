@@ -1,0 +1,127 @@
+{
+  "upstream": "https://github.com/qwXZhong/u30pro-b24-root-skill",
+  "release": "v0.1",
+  "license": "NOASSERTION; externally acquired inputs, not redistributed",
+  "hash_provenance": "Computed from the public v0.1 release downloaded for the original investigation; not upstream signatures. Verify independently if upstream assets change.",
+  "volumes": [
+    {
+      "name": "u30pro-b24-skill.7z.001",
+      "bytes": 1073741824,
+      "sha256": "572239ef76a72bb0f6744449c549ec124d7ac14e25443da97fdca804dd00402f",
+      "url": "https://github.com/qwXZhong/u30pro-b24-root-skill/releases/download/v0.1/u30pro-b24-skill.7z.001"
+    },
+    {
+      "name": "u30pro-b24-skill.7z.002",
+      "bytes": 1073741824,
+      "sha256": "1e3d24f1cffa0d70b895b62c945432ddd06d223344dce6af2ee0364bf1cd6101",
+      "url": "https://github.com/qwXZhong/u30pro-b24-root-skill/releases/download/v0.1/u30pro-b24-skill.7z.002"
+    },
+    {
+      "name": "u30pro-b24-skill.7z.003",
+      "bytes": 1073741824,
+      "sha256": "517b3f74e8c07aa9cfc165c5f014eec605acd8de98a15584d8eac06df54c4717",
+      "url": "https://github.com/qwXZhong/u30pro-b24-root-skill/releases/download/v0.1/u30pro-b24-skill.7z.003"
+    },
+    {
+      "name": "u30pro-b24-skill.7z.004",
+      "bytes": 1073741824,
+      "sha256": "95971f5de255d4f1cac9d00a5ad6468f6eeba0fc68c53b0c3474bd0b697be130",
+      "url": "https://github.com/qwXZhong/u30pro-b24-root-skill/releases/download/v0.1/u30pro-b24-skill.7z.004"
+    },
+    {
+      "name": "u30pro-b24-skill.7z.005",
+      "bytes": 1073741824,
+      "sha256": "9e3e2a3c7cac5043d9f11916dba014bb7be023b75ba90ac3297b6fb9ab309294",
+      "url": "https://github.com/qwXZhong/u30pro-b24-root-skill/releases/download/v0.1/u30pro-b24-skill.7z.005"
+    },
+    {
+      "name": "u30pro-b24-skill.7z.006",
+      "bytes": 1073741824,
+      "sha256": "265614391aa71b1fa3e2bc672afb9dcb4a7cc4abdfb4e48cb985fac6d113da32",
+      "url": "https://github.com/qwXZhong/u30pro-b24-root-skill/releases/download/v0.1/u30pro-b24-skill.7z.006"
+    },
+    {
+      "name": "u30pro-b24-skill.7z.007",
+      "bytes": 1073741824,
+      "sha256": "a432337bd227bcc699125d3236945e3a4a44c0ccf6c9f1ec3375823ee3c98cb6",
+      "url": "https://github.com/qwXZhong/u30pro-b24-root-skill/releases/download/v0.1/u30pro-b24-skill.7z.007"
+    },
+    {
+      "name": "u30pro-b24-skill.7z.008",
+      "bytes": 1073741824,
+      "sha256": "b287683a78b82d547cc4c41d7749fcfa29cbf8d943b357b0304d7fce37f5767c",
+      "url": "https://github.com/qwXZhong/u30pro-b24-root-skill/releases/download/v0.1/u30pro-b24-skill.7z.008"
+    },
+    {
+      "name": "u30pro-b24-skill.7z.009",
+      "bytes": 1073741824,
+      "sha256": "c74f65b5c3e43eee3c6c828f8fa478aaf1a8900f42e94aee82c8512c5f3a8ddb",
+      "url": "https://github.com/qwXZhong/u30pro-b24-root-skill/releases/download/v0.1/u30pro-b24-skill.7z.009"
+    },
+    {
+      "name": "u30pro-b24-skill.7z.010",
+      "bytes": 1073741824,
+      "sha256": "f02cbd6499c1b52cd9e7cec97e576f69449b01c706c8e12c74432d6fe46fcafc",
+      "url": "https://github.com/qwXZhong/u30pro-b24-root-skill/releases/download/v0.1/u30pro-b24-skill.7z.010"
+    },
+    {
+      "name": "u30pro-b24-skill.7z.011",
+      "bytes": 1073741824,
+      "sha256": "022b0b609ad9825997a9b422620344d772bd7369d925a8b4a94bd4cd022a050f",
+      "url": "https://github.com/qwXZhong/u30pro-b24-root-skill/releases/download/v0.1/u30pro-b24-skill.7z.011"
+    },
+    {
+      "name": "u30pro-b24-skill.7z.012",
+      "bytes": 3744248,
+      "sha256": "79549e5959e3e8c05f173d1ca0b31672245e5c172964d1db48b4888f20e627b0",
+      "url": "https://github.com/qwXZhong/u30pro-b24-root-skill/releases/download/v0.1/u30pro-b24-skill.7z.012"
+    }
+  ],
+  "package_files": {
+    "assets/continuation/avbtool.py": "e5a664a38db623da00f080219bc0ee60a640a9dc4a872803616fae4938ac749b",
+    "assets/continuation/verify_avb_b.py": "cc7bf1a699f5221d9bce5c0248cc7745a7f12b60214fc1e75cec43c3f8ce5a84",
+    "assets/continuation/Build-MagiskInitBoot.py": "ae7420b95ea06d4bfca2bc9f78b8d94fe3d9360046dca85d620dadb611a60945",
+    "assets/continuation/Verify-PostromCandidate.py": "3261a3cdd3a719c381beccad0b2ce19c2a819e3e130c6dee596d9f60cc7d089d",
+    "assets/continuation/magisk_preparation_20261001/patched_work/ramdisk.cpio": "dfb17f7c5eed6124e322aa5d73e04e9c377fa29026a62e76db280e43548a1031",
+    "assets/continuation/magisk_metadata_fix_20261001/init_boot_b_MAGISK_30_7_PRESERVED_VBMETA_UNVERIFIED.bin": "2f869d2cdc9b12f003e35e24a026940a58505f6f3eda4c8b453d85acbf173bb6",
+    "assets/diagnostics/offline_candidates/Build-BSlotTrustOsCandidate.py": "9b9c1a23b4933d8e30662beeeba2118d1d78f597f8a9fc821a8eaf76ad5fefbb",
+    "assets/continuation/reader_source/common.c": "0f50121eb161cb8201c14fb21033c84b9ec70385e9abe2d49ee9774a91cae51e",
+    "assets/continuation/reader_source/common.h": "5890c490b3b25f936ae3aa2f3bb5eb122de6c7eb9bbfa9c4983f15f4ac0321d5",
+    "assets/continuation/reader_source/spd_dump.c": "93c965f11819bbb140da790da369ec6104c64a4ee2ef0d2e289fec89080c0f2f",
+    "assets/continuation/reader_source/spd_cmd.h": "6d9b21cef93db0c01c6c4ea64a4befc73e70cc116cbb99f590f9a5eeaad8fef6",
+    "assets/continuation/reader_source/GITVER.h": "48291d6064030453ba01c30422b5968d11a87a6ac959c21a42cf62439156cb9a"
+  },
+  "public_stock": {
+    "splloader": {
+      "sha256": "8bd7f893280d1ed9c99f40869648e93b24057b76e890112a4ddc1261372fed3f",
+      "bytes": 262144,
+      "source_path": "assets/continuation/root_preparation_20261001/splloader.bin"
+    },
+    "sml_b": {
+      "sha256": "e0698e893ec184e5e991cc6afba06f3a348c0f4be685216cfa0cd1d803abc13d",
+      "bytes": 1048576,
+      "source_path": "assets/continuation/root_preparation_20261001/sml_b.bin"
+    },
+    "uboot_b": {
+      "sha256": "9ee53cb3829428a272a5c7a9b272fd1e5aa761cf3df0345ed29cc5267ae3b24e",
+      "bytes": 9437184,
+      "source_path": "assets/continuation/root_preparation_20261001/uboot_b.bin"
+    },
+    "trustos_b": {
+      "sha256": "8024c0d980a74e0e6aafa13c477f86b0e404d949813099c6e7e720d76f29ee93",
+      "bytes": 6291456,
+      "source_path": "assets/continuation/root_preparation_20261001/trustos_b.bin"
+    },
+    "init_boot_b": {
+      "sha256": "b1406dd31babb2d8792bb8f2fc33a36697bfd1784050bac0ac79f30253d9e404",
+      "bytes": 8388608,
+      "source_path": "assets/continuation/root_preparation_20261001/init_boot_b.bin"
+    },
+    "vbmeta_b": {
+      "sha256": "c2842dabe7e4df8296263dfcc734ea3374271064bfd43e608cd3ab1fbc352a41",
+      "bytes": 1048576,
+      "source_path": "assets/continuation/reads/fullsuper_20261001_110030_040eb0df/vbmeta_b.bin"
+    }
+  },
+  "trustos_candidate_sha256": "8d33c7765caf7640b1facda192d20d0d8a331cf2133a4ecee547006cef97ee76"
+}

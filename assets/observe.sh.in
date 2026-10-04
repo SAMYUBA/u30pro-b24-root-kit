@@ -1,0 +1,45 @@
+#!/system/bin/sh
+# Optional prefix for root_setup.sh: no --observe means continue into the helper.
+if [ "${1-}" = --observe ]; then
+    (
+        # Best effort only: framework services may not be ready during early boot.
+        umask 077
+        boot_id=$(cat /proc/sys/kernel/random/boot_id 2>/dev/null) || boot_id=unavailable
+        snapshot() {
+            printf '\nobserver_snapshot_begin\nboot_id=%s\nsnapshot=%s\n' "$boot_id" "$n"
+            id 2>/dev/null || printf 'identity=unavailable\n'
+            printf 'selinux='
+            getenforce 2>/dev/null || printf 'unavailable\n'
+            for prop in sys.boot_completed ro.boot.slot_suffix ro.bootmode \
+                sys.usb.config sys.usb.state sys.usb.configfs sys.usb.ffs.ready \
+                init.svc.adbd ro.adb.secure ro.debuggable \
+                persist.vendor.sys.modem.diag sys.usb.adb.disabled vendor.sys.usb.adb.disabled; do
+                value=$(getprop "$prop" 2>/dev/null) || value=unavailable
+                printf '%s=%s\n' "$prop" "$value"
+            done
+            value=$(settings get global adb_enabled 2>/dev/null) || value=unavailable
+            printf 'adb_enabled=%s\n' "$value"
+            value=$(pidof magisk magiskd 2>/dev/null) || value=unavailable
+            printf 'magisk_pids=%s\n' "$value"
+            value=$(pidof adbd 2>/dev/null) || value=unavailable
+            printf 'adbd_pids=%s\nobserver_snapshot_end\n' "$value"
+        }
+        n=0
+        while [ "$n" -lt 24 ]; do
+            for dir in /mnt/sdcard/DCIM /data/media/0/DCIM; do
+                marker=$dir/u30-diag-enable.txt
+                out=$dir/u30-diag-runtime.txt
+                [ -d "$dir" ] && [ ! -L "$dir" ] || continue
+                [ -f "$marker" ] && [ ! -L "$marker" ] || continue
+                printf '%s\n' '@TOKEN@' | cmp -s - "$marker" || continue
+                [ ! -L "$out" ] || continue
+                [ ! -e "$out" ] || [ -f "$out" ] || continue
+                # Redirection failure is recoverable: try the backing-media path.
+                if snapshot 2>/dev/null >>"$out"; then break; fi
+            done
+            n=$((n + 1))
+            sleep 5
+        done
+    )
+    exit 0
+fi

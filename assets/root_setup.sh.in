@@ -1,0 +1,79 @@
+#!/system/bin/sh
+# Original implementation: authenticated USB ADB for a locally bound B24 device.
+# Render @SERIAL@ locally; never commit rendered images, keys or device profiles.
+set -eu
+
+[ "$(id -u)" = 0 ] || exit 20
+[ "$(getprop ro.serialno)" = '@SERIAL@' ] || exit 21
+[ "$(getprop ro.adb.secure)" = 1 ] || exit 22
+before=$(settings get global adb_enabled)
+case "$before" in 0|1) ;; *) exit 23 ;; esac
+
+adbdir=/data/misc/adb
+keys=$adbdir/adb_keys
+backup=$adbdir/adb_keys.u30-original
+pub=/debug_ramdisk/u30_host_adb.pub
+log=/data/local/tmp/u30_root_setup.log
+magisk=/debug_ramdisk/magisk
+for path in "$adbdir" "$keys" "$backup" "$pub" "$log"; do
+    [ ! -L "$path" ] || exit 24
+done
+for path in "$keys" "$backup" "$log"; do
+    [ ! -e "$path" ] || [ -f "$path" ] || exit 25
+done
+[ -f "$pub" ] && [ -s "$pub" ] && [ -x "$magisk" ] || exit 26
+
+umask 077
+exec >"$log" 2>&1
+printf 'root_setup_started\nadb_enabled_before=%s\n' "$before"
+mkdir -p "$adbdir"
+chmod 0750 "$adbdir"
+chown system:shell "$adbdir"
+if [ -f "$keys" ] && [ ! -e "$backup" ]; then
+    cp "$keys" "$backup"
+    chmod 0640 "$backup"
+    chown system:shell "$backup"
+    restorecon "$backup"
+fi
+# Keep existing authorizations and add the locally supplied key only once.
+key=$(cat "$pub")
+if [ ! -f "$keys" ] || ! grep -Fqx -- "$key" "$keys"; then
+    tmp=$(mktemp "$adbdir/.u30_keys.XXXXXX")
+    trap 'rm -f "$tmp"' 0
+    if [ -f "$keys" ]; then cat "$keys" >"$tmp"; fi
+    # Normalize a missing final newline without adding an extra blank line.
+    if [ -s "$tmp" ] && [ "$(tail -c 1 "$tmp" | wc -l)" -eq 0 ]; then
+        printf '\n' >>"$tmp"
+    fi
+    printf '%s\n' "$key" >>"$tmp"
+    chmod 0640 "$tmp"
+    chown system:shell "$tmp"
+    mv "$tmp" "$keys"
+    trap - 0
+fi
+chmod 0640 "$keys"
+chown system:shell "$keys"
+restorecon "$adbdir" "$keys"
+
+if [ "$before" = 0 ]; then settings put global adb_enabled 1; fi
+after=$(settings get global adb_enabled)
+printf 'adb_enabled_after=%s\n' "$after"
+[ "$after" = 1 ] || exit 27
+setprop service.adb.tcp.port -1
+stop adbd
+setprop sys.usb.config none
+sleep 1
+setprop sys.usb.config ncm,mtp,adb
+start adbd
+
+attempt=0
+ready=0
+while [ "$attempt" -lt 15 ]; do
+    if "$magisk" -V; then ready=1; break; fi
+    attempt=$((attempt + 1))
+    sleep 2
+done
+[ "$ready" = 1 ] || exit 28
+"$magisk" --sqlite 'INSERT OR REPLACE INTO policies (uid,policy,until,logging,notification) VALUES (2000,2,0,1,1);'
+"$magisk" su -c id
+printf 'root_setup_finished\n'

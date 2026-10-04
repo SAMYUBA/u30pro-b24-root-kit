@@ -1,0 +1,2 @@
+# Version used for the published offline AVB verification.
+cryptography==50.0.2

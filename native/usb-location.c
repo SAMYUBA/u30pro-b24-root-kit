@@ -1,0 +1,3 @@
+#include <libusb.h>
+#include <stdio.h>
+int main(void){libusb_device **list;int r=libusb_init(NULL);if(r)return 1;ssize_t n=libusb_get_device_list(NULL,&list);if(n<0){libusb_exit(NULL);return 1;}for(ssize_t i=0;i<n;i++){struct libusb_device_descriptor d;unsigned char p[8];if(libusb_get_device_descriptor(list[i],&d))continue;if(d.idVendor!=0x19d2&&d.idVendor!=0x1782)continue;int depth=libusb_get_port_numbers(list[i],p,8);if(depth<0)continue;printf("%04x:%04x bus=%u ports=",d.idVendor,d.idProduct,libusb_get_bus_number(list[i]));for(int j=0;j<depth;j++)printf("%s%u",j?".":"",p[j]);puts("");}libusb_free_device_list(list,1);libusb_exit(NULL);return 0;}
